@@ -1,0 +1,127 @@
+--[[
+#=====================================================================================
+#// |  ${exec amixer -c 2 | grep -Eo '[1-9]{1,2}\%'}
+#                               
+# Author  : Erik Dubois at http://www.erikdubois.be
+# License : Distributed under the terms of GNU GPL version 2 or later
+# Documentation English: http://erikdubois.be/category/linux/i3/
+#======================================================================================
+
+#======================================================================================
+#
+# Source : c
+# alternative : sudo apt list --upgradable | wc -l
+#======================================================================================
+
+]]
+
+conky.config = {
+    out_to_x = false,
+    own_window = false,
+    out_to_console = true,
+    background = false,
+    max_text_width = 0,
+    update_interval = 1.0,
+    total_run_times = 0,
+    short_units = true,
+    if_up_strictness = "address",
+    use_spacer = "left",
+    override_utf8_locale = false,
+    cpu_avg_samples = 2
+}
+
+conky.text = [[
+  [
+    {
+      "full_text": "  ${exec ~/bin/xkblayout-state print '%n'} ",
+      "color": "\#ffffff",
+      "background": "\#48586f",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ",
+      "color": "\#6c71c4",
+      "background": "\#2F2F2F",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ${cpu cpu0}%   ${execi 5 sensors|grep 'Core 0'|awk '{print $3}'} ",
+      "color": "\#fdf6e3",
+      "background": "\#bf616a",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ",
+      "color": "\#e84a5f",
+      "background": "\#2F2F2F",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ${memperc}% |  ${exec df -h | grep home | awk '{print $5}'}",
+      "color": "\#fdf6e3",
+      "background": "\#d08770",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ",
+      "color": "\#2aa198",
+      "background": "\#2F2F2F",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ${exec amixer get Master | grep % | awk '{print $5}' | sed 's/[^0-9\%]//g' | head -n1} ",
+      "color": "\#fdf6e3",
+      "background": "\#d5b16a",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ",
+      "color": "\#6c71c4",
+      "background": "\#2F2F2F",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ${exec jdate '+%Y-%m-%d'} ",
+      "color": "\#fdf6e3",
+      "background": "\#8daa74",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ",
+      "color": "\#6c71c4",
+      "background": "\#2F2F2F",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ${time %y/%m/%d} ",
+      "color": "\#fdf6e3",
+      "background": "\#a4799c",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "  ",
+      "color": "\#6c71c4",
+      "background": "\#2F2F2F",
+      "separator": true,
+      "separator_block_width": 0
+    },
+    {
+      "full_text": "   ${time %H:%M} ",
+      "color": "\#fdf6e3",
+      "background": "\#5e81ac",
+      "separator": true,
+      "separator_block_width": 0
+    }
+  ],
+]]
